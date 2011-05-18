@@ -4,7 +4,7 @@ error_reporting (E_ALL|E_STRICT);
 ini_set ('display_errors', 1);
 session_start ();
 
-define ('ABSOLUTE_URI', 'http://filmy.urzenia.net');
+define ('URI_PREFIX', 'http://filmy.urzenia.net');
 
 function debug_array () {
     echo '<pre>';
@@ -84,7 +84,7 @@ if (isset ($_GET['action'])) {
                 debug_array ($e);
                 exit;
             }
-            header ('Location: '.ABSOLUTE_URI);
+            header ('Location: '.URI_PREFIX);
             exit;
         break;
 
@@ -92,7 +92,7 @@ if (isset ($_GET['action'])) {
             if (isset ($_GET['flm_id']) && is_numeric ($_GET['flm_id']) && $_GET['flm_id'] > 0) {
                 $query = $GLOBALS['sql']->prepare ('DELETE FROM `films` WHERE `flm_id` = ?');
                 $query->execute (array ($_GET['flm_id']));
-                header ('Location: '.ABSOLUTE_URI);
+                header ('Location: '.URI_PREFIX);
                 exit;
             }
             else {
@@ -178,7 +178,7 @@ if (isset ($_GET['action'])) {
                     exit;
                 }
 
-                header ('Location: '.ABSOLUTE_URI);
+                header ('Location: '.URI_PREFIX);
                 exit;
             }
             else {
@@ -220,7 +220,7 @@ if (isset ($_GET['action'])) {
                     ));
                 }
 
-                header ('Location: '.ABSOLUTE_URI);
+                header ('Location: '.URI_PREFIX);
                 exit;
             }
             else {
