@@ -5,6 +5,7 @@ ini_set ('display_errors', 1);
 session_start ();
 
 define ('ABSOLUTE_URI', 'http://filmy.urzenia.net');
+define ('DB_PATH', '/films.db.sqlite');
 
 function cgi_dump () {
     echo '<pre>';
@@ -16,7 +17,7 @@ function cgi_dump () {
     return;
 }
 
-function sql_connect ($dbname='/films.db.sqlite') {
+function sql_connect ($dbname=DB_PATH) {
     $sql = new PDO ('sqlite:'.$dbname);
     $sql->setAttribute (PDO::ATTR_CASE, PDO::CASE_NATURAL);
     $sql->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
