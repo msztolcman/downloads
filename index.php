@@ -6,7 +6,7 @@ session_start ();
 
 define ('ABSOLUTE_URI', 'http://filmy.urzenia.net');
 
-function debug_array () {
+function cgi_dump () {
     echo '<pre>';
     foreach (func_get_args () as $arg) {
         print_r ($arg);
@@ -81,7 +81,7 @@ if (isset ($_GET['action'])) {
                     `flm_dateadd` TEXT NOT NULL DEFAULT ""
                 )');
             } catch (PDOException $e) {
-                debug_array ($e);
+                cgi_dump ($e);
                 exit;
             }
             header ('Location: '.ABSOLUTE_URI);
@@ -174,7 +174,7 @@ if (isset ($_GET['action'])) {
                     }
                 }
                 catch (PDOException $e) {
-                    debug_array ($e);
+                    cgi_dump ($e);
                     exit;
                 }
 
@@ -440,7 +440,7 @@ try {
         );
     }
 } catch (PDOException $e) {
-    debug_array ($e);
+    cgi_dump ($e);
 }
 
 ?>
